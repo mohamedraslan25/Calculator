@@ -1,45 +1,92 @@
-﻿namespace Calculator;
+﻿using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("=== Calculator ===");
+        Console.WriteLine("===== Simple Calculator =====");
 
-        Console.Write("Enter first number: ");
-        double num1 = Convert.ToDouble(Console.ReadLine());
+        // Get first number
+        double firstNumber = ReadNumber("Enter first number: ");
 
-        Console.Write("Enter second number: ");
-        double num2 = Convert.ToDouble(Console.ReadLine());
+        // Get operator
+        char operation = ReadOperator();
 
-        Console.Write("Enter operation (+, -, *, /): ");
-        string operation = Console.ReadLine();
+        // Get second number
+        double secondNumber = ReadNumber("Enter second number: ");
 
+        // Prevent division by zero
+        while (operation == '/' && secondNumber == 0)
+        {
+            Console.WriteLine("Error: Cannot divide by zero.");
+            secondNumber = ReadNumber("Enter another number: ");
+        }
+
+        // Calculate result
         double result = 0;
 
         switch (operation)
         {
-            case "+":
-                result = num1 + num2;
+            case '+':
+                result = firstNumber + secondNumber;
                 break;
 
-            case "-":
-                result = num1 - num2;
+            case '-':
+                result = firstNumber - secondNumber;
                 break;
 
-            case "*":
-                result = num1 * num2;
+            case '*':
+                result = firstNumber * secondNumber;
                 break;
 
-            case "/":
-                result = num1 / num2;
+            case '/':
+                result = firstNumber / secondNumber;
                 break;
-
-            default:
-                Console.WriteLine("Invalid operation.");
-                return;
         }
 
         Console.WriteLine($"Result: {result}");
+    }
+
+
+    // Read and validate number
+    static double ReadNumber(string message)
+    {
+        double number;
+
+        while (true)
+        {
+            Console.Write(message);
+
+            if (double.TryParse(Console.ReadLine(), out number))
+            {
+                return number;
+            }
+
+            Console.WriteLine("Invalid input. Please enter a valid number.");
+        }
+    }
+
+
+    // Read and validate operator
+    static char ReadOperator()
+    {
+        while (true)
+        {
+            Console.Write("Enter operator (+, -, *, /): ");
+
+            string input = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(input) &&
+                input.Length == 1 &&
+                (input[0] == '+' ||
+                 input[0] == '-' ||
+                 input[0] == '*' ||
+                 input[0] == '/'))
+            {
+                return input[0];
+            }
+
+            Console.WriteLine("Invalid operator. Please use +, -, *, or /.");
+        }
     }
 }
