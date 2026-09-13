@@ -154,13 +154,13 @@ Before running the project, make sure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/mohamedraslan25/Calculator>
 ```
 
 ### 2. Navigate to the Project
 
 ```bash
-cd <project-folder>
+cd <Calculator>
 ```
 
 ### 3. Run the Application
@@ -228,13 +228,6 @@ The following GIF demonstrates how to use the calculator, including:
 ## 🎬 Demo
 
 <img src="./docs/calculator-demo.gif" alt="Calculator Demo" width="700">
-
-Make sure the GIF is stored in the repository at:
-
-```text
-docs/
-└── calculator-demo.gif
-```
 
 ---
 
